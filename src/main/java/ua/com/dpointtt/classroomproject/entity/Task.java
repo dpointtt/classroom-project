@@ -1,22 +1,25 @@
 package ua.com.dpointtt.classroomproject.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
+@Data
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-// TODO: zadanie v classroom
+@Table(name = "task")
 public class Task {
+    @Id
     private Long id;
-    private String taskName;
-    private TaskType type;
+    private String taskTitle;
+    private String taskType;
     private String taskDescription;
-    private LocalDateTime expires;
-    private float points;
+    private LocalDateTime taskExpires;
+    private float taskPoints;
+    private Long classroomId;
 }

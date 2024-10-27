@@ -1,19 +1,20 @@
 package ua.com.dpointtt.classroomproject.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "user_classroom")
 public class UserClassroom {
-    // TODO: соединяющий класс для MANY-MANY конекта в бд
+    @Id
     private Long id;
-    private AppUser user;
-    private Classroom classroom;
-    private AppUserType userType;
+    private Long appUserId;
+    private Long classroomId;
+    private String userType;
     private float overallPoints;
 }

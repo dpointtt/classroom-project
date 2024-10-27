@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS app_user
 (
-    id         BIGINT      NOT NULL GENERATED ALWAYS AS IDENTITY,
+    id         BIGSERIAL      NOT NULL,
     first_name VARCHAR(45) NOT NULL,
     last_name  VARCHAR(45) NOT NULL,
     email      VARCHAR(45) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS app_user
 
 CREATE TABLE IF NOT EXISTS classroom
 (
-    id                    BIGINT       NOT NULL GENERATED ALWAYS AS IDENTITY,
+    id                    BIGSERIAL       NOT NULL,
     string_id             VARCHAR(45)  NOT NULL,
     classroom_name        VARCHAR(45)  NOT NULL,
     classroom_description VARCHAR(255) NULL,
@@ -18,11 +18,12 @@ CREATE TABLE IF NOT EXISTS classroom
 
 CREATE TABLE IF NOT EXISTS user_classroom
 (
+    id            BIGSERIAL        NOT NULL,
     classroom_id  BIGINT           NOT NULL,
     app_user_id   BIGINT           NOT NULL,
     app_user_type VARCHAR(15)      NOT NULL,
     points        DOUBLE PRECISION NULL,
-    PRIMARY KEY (classroom_id, app_user_id),
+    PRIMARY KEY (id, classroom_id, app_user_id),
     CONSTRAINT fk_user_classroom_classroom
         FOREIGN KEY (classroom_id)
             REFERENCES classroom (id)
@@ -38,7 +39,7 @@ CREATE TABLE IF NOT EXISTS user_classroom
 
 CREATE TABLE IF NOT EXISTS task
 (
-    id               BIGINT           NOT NULL GENERATED ALWAYS AS IDENTITY,
+    id               BIGSERIAL           NOT NULL,
     task_title       VARCHAR(45)      NOT NULL,
     task_description VARCHAR(255)     NULL,
     task_type        VARCHAR(15)      NULL,

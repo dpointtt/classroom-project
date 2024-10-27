@@ -1,21 +1,25 @@
 package ua.com.dpointtt.classroomproject.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Column;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Data
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-// TODO: add relationships (when database will be ready)
+@ToString
+@Table(name = "classroom")
 public class Classroom {
+    @Id
     private Long id;
+    @Column(name = "string_id")
     private String stringId;
+    @Column(name = "classroom_name")
     private String classroomName;
+    @Column(name = "classroom_description")
     private String classroomDescription;
-    private AppUser[] teachers;
-    private AppUser[] students;
-    private Task[] tasks;
 }
