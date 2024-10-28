@@ -22,28 +22,34 @@ public class GreetingHandler {
 
     }
 
-    public Mono<ServerResponse> home(ServerRequest request){
-        return  ServerResponse
+    public Mono<ServerResponse> users(ServerRequest request){
+        return ServerResponse
                 .ok()
-                .contentType(MediaType.TEXT_PLAIN)
-                .body(BodyInserters.fromValue("Main page"));
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(new Greeting("User Page")));
     }
 
-    public Mono<ServerResponse> getClients(ServerRequest request){
-        String start = request.queryParam("start").orElse("0");
+//    public Mono<ServerResponse> register(ServerRequest request){
+//        return ServerResponse
+//                .ok()
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .body(BodyInserters.fromValue(new Greeting("Successfully registered!")));
+//    }
 
-        Flux<Client> clients = Flux.just(
-                new Client(1L, "Ihor", "Vihorkov", 35),
-                new Client(1L, "Eve", "Sqwore", 22),
-                new Client(1L, "Monkey", "King", 12)
-        )
-                .skip(Long.parseLong(start))
-                .take(2);
+    public Mono<ServerResponse> admin(ServerRequest request) {
+
+        // fake users
+        Flux<Client> users = Flux.
+                just(
+                        new Client(1L, "Ihor", "Vihorkov", 35),
+                        new Client(2L, "Eve", "Sqwore", 22),
+                        new Client(3L, "Monkey", "King", 12)
+                );
 
         return ServerResponse
                 .ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(clients, Client.class);
+                .body(users, Client.class);
     }
 
 }

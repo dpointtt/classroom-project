@@ -4,17 +4,16 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_classroom")
-public class UserClassroom {
+@ToString
+
+@Table(name = "app_user_roles")
+public class AppUserRoles {
     @Id
     private Long id;
-    private Long appUserId;
-    private Long classroomId;
-    private String appUserType;
-    private float points;
+    private Long role_id;
+    private Long app_user_id;
 }

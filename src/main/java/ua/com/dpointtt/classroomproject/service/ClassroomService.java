@@ -1,8 +1,8 @@
 package ua.com.dpointtt.classroomproject.service;
 
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ua.com.dpointtt.classroomproject.entity.Classroom;
